@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+#  annotations:
+#    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: sk345-cert-ingress
+  namespace: class-10
+  labels:
+    app: sk345-cert-ingress
+spec:
+  ingressClassName: public-nginx
+  rules:
+    - host: sk345-ingress.class-10.skala-ai.com
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: sk345-myfirst-api-server
+                port:
+                  number: 8080
+          - path: /python
+            pathType: Prefix
+            backend:
+              service:
+                name: sk345-myfirst-api-server
+                port:
+                  number: 8080
+          - path: /actuator
+            pathType: Prefix
+            backend:
+              service:
+                name: sk345-myfirst-api-server
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sk345-frontend
+                port:
+                  number: 8080
+  tls:
+  - hosts:
+    - 'sk345-ingress.class-10.skala-ai.com'
+    secretName: wildcard-class-10-skala-ai-com-tls
