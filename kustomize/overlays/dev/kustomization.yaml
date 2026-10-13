@@ -19,4 +19,4 @@ patches:
 images:
 - name: skala-registry.skala-ai.com/class-10/sk345-webserver
   newName: skala-registry.skala-ai.com/class-10/sk345-webserver
-  newTag: 1.0.kaniko-pod
+  newTag: 1.0-bd1-0afb284
